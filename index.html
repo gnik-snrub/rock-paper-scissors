@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+    <script>
+
+        function computerPlay() {
+            let computerChoice = Math.random();
+            if (computerChoice < 0.33) {
+                return "rock";
+            } else if (computerChoice < 0.66) {
+                return "scissors";
+            } else {
+                return "paper";
+            }
+        }
+
+        function playRound(playerSelection, computerSelection) {
+            switch (computerSelection) {
+                case "rock":
+                    switch (playerSelection.toLowerCase()) {
+                        case "rock":
+                            console.log("It's a tie!");
+                            break;
+                        case "scissors":
+                            console.log("You lose! Rock beats scissors.");
+                            break;
+                        default:
+                            cosnole.log("You win! Paper beats rock!");
+                            break;
+                    }
+                    break;
+
+                case "scissors":
+                    switch (playerSelection.toLowerCase()) {
+                        case "rock":
+                            console.log("You win! Rock beats scissors!");
+                            break;
+                        case "scissors":
+                            console.log("It's a tie!");
+                            break;
+                        default:
+                            cosnole.log("You lose! Scissors beats paper.");
+                            break;
+                    }
+                    break;
+
+                default:
+                    switch (playerSelection.toLowerCase()) {
+                        case "rock":
+                            console.log("You lose! Paper beats rock.");
+                            break;
+                        case "scissors":
+                            console.log("You win! Scissors beats rock.");
+                            break;
+                        default:
+                            cosnole.log("It's a tie!");
+                            break;
+                    }
+                    break;
+            }
+        }
+
+    </script>
+</body>
+</html>
