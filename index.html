@@ -17,17 +17,19 @@
         }
 
         function playRound(playerSelection, computerSelection) {
+            let result;
+
             switch (computerSelection) {
                 case "rock":
                     switch (playerSelection.toLowerCase()) {
                         case "rock":
-                            console.log("It's a tie!");
+                            result = "It's a tie!";
                             break;
                         case "scissors":
-                            console.log("You lose! Rock beats scissors.");
+                            result = "You lose! Rock beats scissors.";
                             break;
                         default:
-                            cosnole.log("You win! Paper beats rock!");
+                            result = "You win! Paper beats rock!";
                             break;
                     }
                     break;
@@ -35,13 +37,13 @@
                 case "scissors":
                     switch (playerSelection.toLowerCase()) {
                         case "rock":
-                            console.log("You win! Rock beats scissors!");
+                            result = "You win! Rock beats scissors!";
                             break;
                         case "scissors":
-                            console.log("It's a tie!");
+                            result = "It's a tie!";
                             break;
                         default:
-                            cosnole.log("You lose! Scissors beats paper.");
+                            result = "You lose! Scissors beats paper.";
                             break;
                     }
                     break;
@@ -49,18 +51,21 @@
                 default:
                     switch (playerSelection.toLowerCase()) {
                         case "rock":
-                            console.log("You lose! Paper beats rock.");
+                            result = "You lose! Paper beats rock.";
                             break;
                         case "scissors":
-                            console.log("You win! Scissors beats rock.");
+                            result = "You win! Scissors beats rock.";
                             break;
                         default:
-                            cosnole.log("It's a tie!");
+                            result = "It's a tie!";
                             break;
                     }
                     break;
             }
+
+            return result;
         }
+
 
     </script>
 </body>
