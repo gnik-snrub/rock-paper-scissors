@@ -25,37 +25,36 @@ function playRound(playerSelection, computerSelection) {
                 result = "It's a tie!";
                 break;
             case "scissors":
-                result = "You lose! Rock beats scissors.";
+                result = "Rock beats scissors.";
                 computerWin = 1;
                 break;
             default:
-                result = "You win! Paper beats rock!";
+                result = "Paper beats rock!";
                 playerWin = 1;
                 break;
         }
     } else if (computerSelection == "scissors") {
         switch (playerSelection.toLowerCase()) {
             case "rock":
-                result = "You win! Rock beats scissors!";
+                result = "Rock beats scissors!";
                 playerWin = 1;
                 break;
             case "scissors":
                 result = "It's a tie!";
                 break;
             default:
-                result = "You lose! Scissors beats paper.";
+                result = "Scissors beats paper.";
                 computerWin = 1;
                 break;
         }
-    }
-    else {
+    } else {
         switch (playerSelection.toLowerCase()) {
             case "rock":
-                result = "You lose! Paper beats rock.";
+                result = "Paper beats rock.";
                 computerWin = 1;
                 break;
             case "scissors":
-                result = "You win! Scissors beats rock.";
+                result = "Scissors beats paper.";
                 playerWin = 1;
                 break;
             default:
@@ -63,35 +62,38 @@ function playRound(playerSelection, computerSelection) {
                 break;
         }
     }
-    return [result, playerWin, computerWin];
+    roundUpdate(result, playerWin, computerWin);
 }
 
-function game() {
+let wins = 0;
+let losses = 0;
 
-    let wins = 0;
-    let losses = 0;
-    
-    for (i = 0; i < 5; i++) {
-        let playerSelection = prompt("Select your weapon - Rock, Paper, or Scissors?");
+const playerWins = document.querySelector('.p-wins');
+const declaration = document.querySelector('.tag');
+const compWins = document.querySelector('.c-wins');
 
-        // Gathers game results.
-        let [result, playerWin, computerWin] = playRound(playerSelection, computerPlay());
+function roundUpdate(result, pWin, compWin) {
+    wins += pWin;
+    losses += compWin;
 
-        // If the player won, their score goes up by 1.
-        // If the computer won, player losses go up by 1.
-        wins += playerWin;
-        losses += computerWin;
-
-        // Displays results in the console.
-        console.log(result);
-    }
-
-    // Displays total game results. Differs depending on whether the player won, the computer won, or there was a tie..
-    if (wins == losses) {
-        console.log(`You won ${ wins } rounds, and tied with the computer.`);
-    } else if (wins > losses) {
-        console.log(`You won ${ wins } rounds, and beat the computer!`);
-    } else {
-        console.log(`You won ${ wins } times, but lost to the computer.`);
+        
+    if (wins < 5 && losses < 5) {
+        playerWins.textContent = `Player: ${wins}`;
+        declaration.textContent = result;
+        compWins.textContent = `Computer: ${losses}`;
+    } else if (wins == 5 && losses < 5) {
+        playerWins.textContent = `Player: ${wins}`;
+        declaration.textContent = "You beat the computer to 5!";
+        compWins.textContent = `Computer: ${losses}`;
+    } else if (losses == 5 && wins < 5) {
+        playerWins.textContent = `Player: ${wins}`;
+        declaration.textContent = "The computer beat you to 5!";
+        compWins.textContent = `Computer: ${losses}`;
     }
 }
+
+const buttonList = document.querySelectorAll('button');
+
+buttonList.forEach(b => b.addEventListener("click", function(e) {
+    console.log(playRound(b.className, computerPlay()));
+}));
